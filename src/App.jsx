@@ -1,11 +1,11 @@
+import Body from "./Components/Body" 
 
-import './App.css'
 
 const App = () => {
   return (
-    <>
-      <h1 className='text-2xl'>hello this is netflix project</h1>
-    </>
+   <div>
+    <Body/>
+   </div>
   )
 }
 
