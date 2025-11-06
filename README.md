@@ -16,6 +16,8 @@
 - create redux store with userslice
 - implement signout
 - update profile
+- redirect issue fixed
+
 - fetch from tmbd movies
 
 

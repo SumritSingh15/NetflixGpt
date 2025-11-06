@@ -1,12 +1,19 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Header from './Header'
+import usePlayingMovies from './hooks/usePlayingMovies';
+import MainContainer from './MainContainer';
+import MovieList from "../Components/MovieList"
 
 const Browse = () => {
-  return (
-    <div>
-      <Header/>
-    </div>
-  )
+     usePlayingMovies()
+
+     return(
+      <div>
+        <Header/>
+        <MainContainer/>
+        <MovieList/>
+      </div>
+     )  
 }
 
 export default Browse

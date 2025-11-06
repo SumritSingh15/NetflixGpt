@@ -4,7 +4,6 @@ import { useState } from 'react';
 import CheckValidData from './utils/ValidData';
 import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from './utils/Firebase';
-import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { addUser } from './utils/UserSlice';
 const Login = () => {
@@ -14,7 +13,7 @@ const Login = () => {
   const name = useRef(null)
   const email = useRef(null)
   const password = useRef(null)
-  const navigate = useNavigate();
+
   const dispatch = useDispatch();
   const HandleData = () => {
     const message = CheckValidData(email.current.value, password.current.value
@@ -36,7 +35,7 @@ const Login = () => {
             // ...
             dispatch(addUser({ uid: uid, email: email, displayName: displayName }))
             // ...
-            navigate("/browse")
+            
           }).catch((error) => {
             // An error occurred
             // ...
@@ -58,8 +57,7 @@ const Login = () => {
           // Signed in 
           const user = userCredential.user;
           // ...
-          navigate("/browse")
-          console.log(user)
+          
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -73,7 +71,7 @@ const Login = () => {
     SetSignINForm(!signInForm)
   }
   return (
-    <div>
+    <div className='overflow-x-hidden'>
       <Header />
       <div >
         <img src="https://assets.nflxext.com/ffe/siteui/vlv3/9ba9f0e2-b246-47f4-bd1f-3e84c23a5db8/web/IN-en-20251020-TRIFECTA-perspective_d6da84e9-6145-4b1e-bb51-e402c966a045_large.jpg" alt="" bg-img className=" w-full absolute" />
