@@ -6,6 +6,7 @@ import { createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfi
 import { auth } from './utils/Firebase';
 import { useDispatch } from 'react-redux';
 import { addUser } from './utils/UserSlice';
+import { Bg_Img } from './utils/constant';
 const Login = () => {
 
   const [signInForm, SetSignINForm] = useState(true);
@@ -36,12 +37,9 @@ const Login = () => {
             dispatch(addUser({ uid: uid, email: email, displayName: displayName }))
             // ...
             
-          }).catch((error) => {
-            // An error occurred
-            // ...
-          });
+          })
           
-          console.log(user)
+         
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -71,10 +69,10 @@ const Login = () => {
     SetSignINForm(!signInForm)
   }
   return (
-    <div className='overflow-x-hidden'>
+    <div>
       <Header />
-      <div >
-        <img src="https://assets.nflxext.com/ffe/siteui/vlv3/9ba9f0e2-b246-47f4-bd1f-3e84c23a5db8/web/IN-en-20251020-TRIFECTA-perspective_d6da84e9-6145-4b1e-bb51-e402c966a045_large.jpg" alt="" bg-img className=" w-full absolute" />
+      <div className='w-full' >
+        <img src={Bg_Img} alt="" bg-img className=" h-full w-full absolute" />
       </div>
 
       <form onSubmit={(e) => { e.preventDefault() }} className='p-12 bg-black opacity-80 w-115 absolute my-40 mx-auto right-0 left-0'>
@@ -82,14 +80,13 @@ const Login = () => {
         {!signInForm && (
           <input ref={name} type='text' placeholder='Enter Full Name' className='p-4 m-4 bg-gray-600 w-full'></input>
         )
-
         }
         <input ref={email} type='text' placeholder='Enter Email address' className='p-4 m-4 bg-gray-700 w-full'></input>
 
         <input ref={password} type='password' placeholder='Enter Password' className='p-4 m-4 bg-gray-700 w-full'></input>
         <p className='text-red-500 p-2 m-2'>{errormessage}</p>
-        <button className='p-4  m-4 w-full bg-red-500 text-white' onClick={HandleData}>{signInForm ? "Sign IN" : "Sign Up"}</button>
-        <p className='py-4 mx-4 text-white cursor-pointer' onClick={ToggleSignIn}>{signInForm ? "Already registered? Sign In Now. " : "New to Netflix? Sign Up Now"}</p>
+        <button className='p-4  m-4 w-full bg-red-500 text-white' onClick={HandleData}>{signInForm ? "Sign IN":"Sign Up" }</button>
+        <p className='py-4 mx-4 text-white cursor-pointer' onClick={ToggleSignIn}>{signInForm ? "New to Netflix? Sign Up Now":"Already registered? Sign In Now. "}</p>
       </form>
     </div>
   )

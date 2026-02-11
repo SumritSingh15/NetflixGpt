@@ -17,8 +17,13 @@
 - implement signout
 - update profile
 - redirect issue fixed
-
 - fetch from tmbd movies
+- custom hook for nowplaying movies
+- create movieslice
+- update store with movies data
+- fetch trailer video
+- make autoplay and mute
+
 
 
 # Features
