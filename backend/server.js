@@ -8,7 +8,7 @@ dotenv.config();
 const app = express();
 app.use(cors());
 app.use(express.json());
-
+const PORT = process.env.PORT || 5000;
 console.log("GROQ KEY EXISTS:", !!process.env.GROQ_API_KEY);
 
 const groq = new Groq({
@@ -25,16 +25,16 @@ app.post("/api/gpt-search", async (req, res) => {
       return res.status(400).json({ error: "Query missing" });
     }
 
-  const completion = await groq.chat.completions.create({
-  model: "llama-3.1-8b-instant",
-  max_tokens: 300,
-  messages: [
-    {
-      role: "user",
-      content: `Suggest exactly 10 Netflix movies related to "${query}". Return only comma-separated movie names, no extra text.`
-    },
-  ],
-});
+    const completion = await groq.chat.completions.create({
+      model: "llama-3.1-8b-instant",
+      max_tokens: 300,
+      messages: [
+        {
+          role: "user",
+          content: `Suggest exactly 10 Netflix movies related to "${query}". Return only comma-separated movie names, no extra text.`
+        },
+      ],
+    });
 
 
     const result = completion.choices[0]?.message?.content;
@@ -45,7 +45,10 @@ app.post("/api/gpt-search", async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 });
+app.get("/", (req, res) => {
+  res.send("NetflixGPT Backend Running 🚀");
+});
 
-app.listen(5000, () => {
-  console.log("✅ Backend running on http://localhost:5000");
+app.listen(PORT, () => {
+  console.log(`✅ Backend running on port ${PORT}`);
 });
