@@ -1,7 +1,7 @@
 import React, { useRef, useState } from "react";
 import { Api_Options } from "./constant";
 
-const GptsearchBar = () => {
+const GptSearchBar = () => {
   const searchText = useRef(null);
   const [loading, setLoading] = useState(false);
   const [movies, setMovies] = useState([]);
@@ -107,4 +107,4 @@ const GptsearchBar = () => {
   );
 };
 
-export default GptsearchBar;
+export default GptSearchBar;
