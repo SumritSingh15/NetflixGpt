@@ -5,6 +5,7 @@ const GptsearchBar = () => {
   const searchText = useRef(null);
   const [loading, setLoading] = useState(false);
   const [movies, setMovies] = useState([]);
+  const API_URL = import.meta.env.VITE_BACKEND_URL;
 
   const handleGptSearch = async () => {
     const query = searchText.current.value;
@@ -14,7 +15,7 @@ const GptsearchBar = () => {
     setMovies([]);
 
     try {
-      const res = await fetch("http://localhost:5000/api/gpt-search", {
+      const res = await fetch(`${API_URL}/api/gpt-search`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ query }),
